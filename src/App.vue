@@ -1,30 +1,30 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+    <tar-bar-item></tar-bar-item>
+    <router-view v-slot="{ Component }">
+      <!-- 
+        keep-alive 是 Vue 内置的一个组件，
+        可以使被包含的组件保留状态，或避免重新渲染。
+        如果不想要所有的状态都被保留，可以使用exclude排除掉，前提该组件需要设置name属性
+       -->
+      <keep-alive exclude="Detail">
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
+
+    <!-- <div class="tab_bar"></div> -->
   </div>
-  <router-view/>
 </template>
 
+<script>
+import TarBarItem from "components/common/tarbar/TarBarItem";
+
+export default {
+  name: "app",
+  components: { TarBarItem },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+@import "./assets/css/base.css";
 </style>
