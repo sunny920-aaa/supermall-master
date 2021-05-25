@@ -18,15 +18,21 @@
       <div class="cart" @click="addToCart">加入购物车</div>
       <div class="buy">购买</div>
     </div>
+    <div></div>
   </div>
 </template>
 <script>
 export default {
   methods: {
     addToCart() {
-      this.$emit("addToCart");
-    },
-  },
+      if (localStorage.getItem("token") === null) {
+        this.$router.push("/profile");
+      } else {
+        console.log(localStorage.getItem("token"));
+        this.$emit("addToCart");
+      }
+    }
+  }
 };
 </script>
 <style scoped>

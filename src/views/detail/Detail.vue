@@ -55,7 +55,7 @@ import {
   Goods,
   shop,
   GoodsParam,
-  goodsList,
+  goodsList
 } from "../../network/detail";
 import DetailComment from "./childComps/DetailComment.vue";
 import DetailContent from "./childComps/DetailContent.vue";
@@ -67,7 +67,7 @@ import DetailSwiper from "./childComps/DetailSwiper.vue";
 import DetailBottomBar from "./childComps/DetailBottomBar.vue";
 import BackTop from "../../components/content/backtop/BackTop.vue";
 import Toast from "../../components/common/toast/Toast.vue";
-
+import storage from "common/const";
 export default {
   name: "Detail",
   data() {
@@ -85,7 +85,7 @@ export default {
       themTopY: [],
       isshow: false,
       istoastshow: false,
-      content: "",
+      content: ""
     };
   },
   components: {
@@ -106,7 +106,7 @@ export default {
     mybus,
     DetailBottomBar,
     BackTop,
-    Toast,
+    Toast
   },
   mounted() {
     /* mybus.on(('imageItemload')=>{}) */
@@ -130,7 +130,7 @@ export default {
     },
     //详情页的轮播图
     getdetail() {
-      getdetail(this.iid).then((res) => {
+      getdetail(this.iid).then(res => {
         const data = res.result;
         this.detailSwiper = data.itemInfo.topImages;
         //商品信息
@@ -156,7 +156,7 @@ export default {
         }
       });
 
-      goodsList().then((res) => {
+      goodsList().then(res => {
         this.goodsList = res.data.list;
       });
     },
@@ -167,13 +167,13 @@ export default {
       this.isshow = position.y < -1000;
     },
     addToCart() {
+      console.log(storage.get("token"));
       let Cart = {};
       (Cart.images = this.detailSwiper[0]),
         (Cart.title = this.Detailgoods.desc);
       Cart.lowNowPrice = this.Detailgoods.lowNowPrice;
       Cart.iid = this.iid;
-
-      this.$store.dispatch("addCart", Cart).then((res) => {
+      this.$store.dispatch("addCart", Cart).then(res => {
         // this.$toast.show(res, 2000);
         (this.istoastshow = true), (this.content = res);
         setTimeout(() => {
@@ -181,8 +181,8 @@ export default {
           this.content = "";
         }, 2000);
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>

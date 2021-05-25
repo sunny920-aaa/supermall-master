@@ -1,38 +1,41 @@
 <template>
-  <div class="DetailShop">
-    <img :src="DetailShop.logo" alt="" />
-    <span>{{ DetailShop.name }}</span>
-  </div>
   <div>
-    <div class="sells">
-      <div>
-        <span class="sellsSum">{{ DetailShop.sells }}</span>
-      </div>
-      <span class="sellsSum1">总销量</span>
+    <div class="DetailShop">
+      <img :src="DetailShop.logo" alt="" />
+      <span>{{ DetailShop.name }}</span>
     </div>
-    <div class="goods">
-      <div>
-        <span class="goods1">{{ DetailShop.goods }}</span>
+    <div>
+      <div class="sells">
+        <div>
+          <span class="sellsSum">{{ DetailShop.sells }}</span>
+        </div>
+        <span class="sellsSum1">总销量</span>
       </div>
-      <span class="goods2">全部宝贝</span>
-    </div>
-    <div class="DetailShopScore">
-      <div v-for="item in DetailShop.score" :key="item.index">
-        <span class="DetailShopName">
-          {{ item.name }}
-        </span>
-        <span
-          class="DetailGrade"
-          :style="{ color: item.isBetter ? 'red' : 'green' }"
-          >{{ item.score }}</span
-        >
-        <span
-          :style="{
-            backgroundColor: item.isBetter ? 'red' : 'green',
-          }"
-          class="DetailIsBetter"
-          >{{ item.isBetter ? "高" : "低" }}</span
-        >
+
+      <div class="goods">
+        <div>
+          <span class="goods1">{{ DetailShop.goods }}</span>
+        </div>
+        <span class="goods2">全部宝贝</span>
+      </div>
+      <div class="DetailShopScore">
+        <div v-for="item in DetailShop.score" :key="item.index">
+          <span class="DetailShopName">
+            {{ item.name }}
+          </span>
+          <span
+            class="DetailGrade"
+            :style="{ color: item.isBetter ? 'red' : 'green' }"
+            >{{ item.score }}</span
+          >
+          <span
+            :style="{
+              backgroundColor: item.isBetter ? 'red' : 'green'
+            }"
+            class="DetailIsBetter"
+            >{{ item.isBetter ? "高" : "低" }}</span
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -47,27 +50,27 @@ export default {
       type: Object,
       default() {
         return {};
-      },
-    },
+      }
+    }
   },
   computed: {
     betterScore(isBetter) {
       /*  if(isBetter){
         return ''
       } */
-    },
+    }
   },
   data() {
     return {
-      score: 0,
+      score: 0
     };
   },
   methods: {
     score() {
       this.score = scroll;
       console.log(this.score);
-    },
-  },
+    }
+  }
 };
 </script>
 

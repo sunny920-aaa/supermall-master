@@ -57,12 +57,12 @@ export default {
     // },
   },
   components: {
-    TarBar,
+    TarBar
   },
   data() {
     return {
       path: "/home",
-      active: 0,
+      active: 0
     };
   },
   methods: {
@@ -70,26 +70,31 @@ export default {
       this.active = path;
       if (path == 0) {
         this.$router.push({
-          path: "/home",
+          path: "/home"
         });
         this.path = "/home";
       } else if (path == 1) {
         this.$router.push({
-          path: "/category",
+          path: "/category"
         });
         this.path = "/category";
       } else if (path == 2) {
-        this.$router.push({
-          path: "/cart",
-        });
-        this.path = "/cart";
+        if (localStorage.getItem("token") === null) {
+          alert("请先登录");
+          this.$router.push("/profile");
+        } else {
+          this.$router.push({
+            path: "/cart"
+          });
+          this.path = "/cart";
+        }
       } else {
         this.$router.push({
-          path: "/profile",
+          path: "/profile"
         });
         this.path = "/profile";
       }
-    },
+    }
   },
   computed: {
     /* isActive() {
@@ -99,7 +104,7 @@ export default {
     /* isStyleActive(num) {
       return this.isActive ? { color: this.activeStyle } : {};
     }, */
-  },
+  }
 };
 </script>
 

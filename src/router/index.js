@@ -27,15 +27,20 @@ const routes = [{
     },
     {
         path: '/cart',
-        component: Cart
+        component: Cart,
+        meta: {
+            needLogin: true //需要加校检判断的路由
+        }
     },
     {
         path: '/profile',
+        name: 'Profile',
         component: Profile
     },
     {
         path: '/detail/:iid',
-        component: Detail
+        component: Detail,
+
     }
 ]
 

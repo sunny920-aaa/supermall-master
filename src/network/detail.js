@@ -6,7 +6,6 @@ export function getdetail(iid) {
         params: {
             iid
         }
-
     })
 }
 export function goodsList() {
